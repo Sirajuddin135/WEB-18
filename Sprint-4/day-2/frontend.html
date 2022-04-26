@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Page</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 20px;
+      }
+      #container > div {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      }
+      #container > div > img:first-child {
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      p + img {
+        height: 50px;
+        display: flex;
+        margin: auto;
+        margin-top: -4%;
+      }
+      h2, p {
+        text-align: center;
+      }
+      h2 {
+        margin-top: 10px;
+      }
+      p {
+        color: gray;
+        margin-top: -4%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Frontend</h2>
+    <div id="container"></div>
+  </body>
+</html>
+
+<script>
+  var investorsArr = JSON.parse(localStorage.getItem("investorsData"));
+
+    investorsArr.forEach(function(elem) {
+        var card = document.createElement("div");
+
+        var image = document.createElement("img");
+        image.setAttribute("src", elem.investorImg);
+
+        var name = document.createElement("h2");
+        name.innerText = elem.investorName;
+
+        var position = document.createElement("p");
+        position.innerText = elem.investorRole;
+
+        var logo = document.createElement("img");
+        logo.setAttribute("src", elem.investorCompanyLogo);
+
+        card.append(image, name, position, logo);
+
+        document.querySelector("#container").append(card);
+    });
+</script>
