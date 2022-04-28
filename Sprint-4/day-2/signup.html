@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup Page</title>
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            h1 {
+                text-align: center;
+            }
+            #signup {
+                width: 50%;
+                margin: auto;
+            }
+            #signup * {
+                display: block;
+                margin: auto;
+                padding: 10px;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+            div {
+                width: 18%;
+                display: flex;
+                margin: auto;
+                margin-top: 20px;
+            }
+            button {
+                margin-top: -5px;
+                margin-left: 20px;
+                padding: 5px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Signup Page</h1>
+        <form id="signup">
+            <input type="text" id="email" placeholder="Enter Email ID">
+            <input type="number" id="mobile" placeholder="Enter Mobile Number">
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="submit">
+        </form>
+        <div>
+            <p>Already have an account ?</p>
+            <button>Login</button>
+        </div>
+    </body>
+    <script>
+        var form = document.querySelector("#signup");
+        
+        var signData = JSON.parse(localStorage.getItem("userData")) || [];
+        
+        form.addEventListener("submit", myFunction);
+
+        function myFunction() {
+            event.preventDefault();
+
+            var data = {
+                userName:form.email.value,
+                mobile:form.mobile.value,
+                password:form.password.value,
+            }
+
+            signData.push(data);
+
+            localStorage.setItem("userData", JSON.stringify(signData));
+            window.location.href = "login.html"
+        }
+
+        document.querySelector("div > button").addEventListener("click", function() {
+            window.location.href = "login.html";
+        });
+    </script>
+</html>
